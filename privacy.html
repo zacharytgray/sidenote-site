@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidenote Privacy Policy</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.2em; margin-top: 1.5em; }
+  ul { padding-left: 1.5em; }
+  .updated { color: #888; font-size: 0.9em; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 0.95em; }
+</style>
+</head>
+<body>
+
+<h1>Sidenote Privacy Policy</h1>
+<p class="updated">Last updated: May 2026</p>
+
+<h2>What Sidenote Does</h2>
+<p>Sidenote is a macOS app that records meetings, transcribes audio, and uses AI to generate meeting summaries, action items, and project context. Sidenote is "bring your own key" (BYOK): all third-party AI calls go from your Mac to the provider you configure, using your own API key. Sidenote does not operate any backend, does not proxy your traffic, and never sees your API keys.</p>
+
+<h2>Data Sidenote Stores Locally</h2>
+<p>Sidenote stores the following on your Mac:</p>
+<ul>
+  <li><strong>Audio recordings</strong> of meetings, used for transcription. Recordings are automatically deleted 14 days after capture.</li>
+  <li><strong>Transcripts</strong> generated from recordings.</li>
+  <li><strong>Project metadata</strong> including project names, participant names, linked repositories, and external resources you add.</li>
+  <li><strong>Action items</strong> extracted from meetings.</li>
+  <li><strong>Meeting summaries and AGENT.md project context</strong> produced by your chosen AI provider.</li>
+  <li><strong>App configuration</strong> including provider preferences, theme, and integration settings.</li>
+  <li><strong>API keys</strong> for cloud providers, stored in the macOS Keychain. Sidenote never writes API keys to disk in plaintext.</li>
+</ul>
+
+<h2>Where Your Data Lives</h2>
+<ul>
+  <li><strong>On your Mac:</strong> All data is stored in a local SQLite database and markdown files in your chosen notes folder. The database is rebuilt from the filesystem on each launch — your notes folder is the source of truth.</li>
+  <li><strong>iCloud Drive (optional):</strong> If you keep your notes folder inside the Sidenote iCloud Drive container, your project folders, transcripts, summaries, and AGENT.md files sync across your Macs through Apple's iCloud Drive. Audio recordings stay local to each device. The local SQLite database is not synced.</li>
+  <li><strong>Third-party AI providers (only when you configure them):</strong> When you provide an API key for a cloud provider and grant consent, Sidenote sends specific data to that provider directly. See the next section for who receives what.</li>
+</ul>
+
+<h2>Third-Party AI Providers (BYOK)</h2>
+<p>Sidenote requires explicit consent before sending any data to a third-party AI provider, and re-prompts for consent each time you switch providers. Per Apple App Review Guideline 5.1.2(i), providers are named in the consent screen.</p>
+
+<p>The providers Sidenote can talk to, and what gets sent to each:</p>
+<ul>
+  <li><strong>Anthropic</strong> (LLM, optional) — receives meeting transcripts, participant names, and project context for summarization and action-item extraction. <a href="https://www.anthropic.com/legal/aup">Usage Policy</a> · <a href="https://www.anthropic.com/legal/privacy">Privacy Policy</a></li>
+  <li><strong>OpenAI</strong> (LLM, optional) — same data as Anthropic when selected as the LLM provider. <a href="https://openai.com/policies/usage-policies">Usage Policy</a> · <a href="https://openai.com/policies/privacy-policy">Privacy Policy</a></li>
+  <li><strong>OpenAI</strong> (transcription, optional) — receives audio recordings for transcription. Used only when you select OpenAI as your transcription provider.</li>
+  <li><strong>OpenRouter</strong> (LLM, optional) — same data as Anthropic; OpenRouter routes the request to your chosen upstream model. <a href="https://openrouter.ai/terms">Terms</a> · <a href="https://openrouter.ai/privacy">Privacy Policy</a></li>
+  <li><strong>Groq</strong> (transcription, optional) — receives audio recordings for transcription. Used only when you select Groq as your transcription provider. <a href="https://console.groq.com/docs/legal/services-agreement">Services Agreement</a></li>
+  <li><strong>Ollama</strong> (LLM, optional) — runs entirely on your Mac. No data leaves your device.</li>
+  <li><strong>whisper.cpp</strong> (transcription, default) — runs entirely on your Mac. No data leaves your device.</li>
+</ul>
+
+<p>Your contractual relationship is with each provider directly. Sidenote does not store, log, or proxy API traffic. Output ownership and content rules are governed by each provider's terms, which you accept when you save an API key.</p>
+
+<p>You can revoke consent at any time in Settings → Privacy. Revoking immediately stops further calls to that provider. You can switch back to Ollama or local whisper.cpp at any time to keep all data on-device.</p>
+
+<h2>AI-Generated Content Disclosure</h2>
+<p>Meeting summaries, action plans, and AGENT.md updates produced by an AI provider are labeled in the file with the line <code>_AI-generated by [Provider] (model)._</code>. The label is added by Sidenote, not by the AI, and cannot be suppressed or modified by the model.</p>
+
+<h2>Recording Consent</h2>
+<p>Sidenote records audio from meetings only when you explicitly start a recording session. The first time you start a recording on each Mac, Sidenote shows a one-time reminder that you are responsible for getting consent from everyone in the meeting before recording. Laws on call recording vary by jurisdiction; one-party-consent and all-party-consent rules differ between U.S. states and between countries. Sidenote does not enforce these rules — that is your responsibility as the user.</p>
+
+<p>While a recording session is active, Sidenote shows a visible recording indicator in the menu bar and a red recording banner in the main window.</p>
+
+<h2>Optional Integrations</h2>
+<ul>
+  <li><strong>Todoist</strong> — if you connect Todoist with your own API token, Sidenote syncs action items to your Todoist account. Sidenote stores only the resulting Todoist task IDs locally so updates can flow back.</li>
+  <li><strong>Apple Calendar and Reminders</strong> — if enabled, Sidenote creates events and reminders using Apple's EventKit framework. Data stays within Apple's ecosystem on your devices.</li>
+</ul>
+
+<h2>Analytics, Tracking, and Telemetry</h2>
+<p>Sidenote contains no analytics, telemetry, crash-reporting, or tracking SDKs. No usage data is collected or transmitted to any party — including the developer.</p>
+
+<h2>Data Retention and Deletion</h2>
+<ul>
+  <li>Audio recordings are deleted automatically 14 days after capture.</li>
+  <li>Transcripts, summaries, action items, and project files persist until you delete them.</li>
+  <li>Deleting a project from within Sidenote also deletes its folder from your notes root and its rows from the local database. If iCloud Drive is enabled, the deletion propagates to your other Macs.</li>
+  <li>Uninstalling Sidenote removes the local database. Your notes folder, including transcripts and summaries, remains where you saved it.</li>
+</ul>
+
+<h2>Children's Privacy</h2>
+<p>Sidenote is not directed at children under 13 and does not knowingly collect data from children.</p>
+
+<h2>Changes to This Policy</h2>
+<p>Material changes will be reflected in this document with an updated "Last updated" date. The current version always ships in the app's Settings → About screen and is published at the URL referenced in the App Store listing.</p>
+
+<h2>Contact</h2>
+<p>Questions about this privacy policy: <a href="mailto:zacharytgray@gmail.com">zacharytgray@gmail.com</a></p>
+
+</body>
+</html>
