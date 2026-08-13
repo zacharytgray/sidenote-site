@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidenote Support</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.2em; margin-top: 1.5em; }
+  h3 { font-size: 1.0em; margin-top: 1.2em; }
+  ul { padding-left: 1.5em; }
+  .updated { color: #888; font-size: 0.9em; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 0.95em; }
+  a { color: #c8530a; }
+</style>
+</head>
+<body>
+
+<h1>Sidenote Support</h1>
+<p class="updated">Last updated: May 2026</p>
+
+<h2>Contact</h2>
+<p>For bug reports, feature requests, or questions about Sidenote, email <a href="mailto:zacharytgray@gmail.com?subject=Sidenote%20Support">zacharytgray@gmail.com</a>. Please include:</p>
+<ul>
+  <li>Your macOS version (Apple menu → About This Mac)</li>
+  <li>Your Sidenote version (Sidenote menu → About Sidenote)</li>
+  <li>What you were doing when the issue occurred</li>
+  <li>Steps to reproduce, if you can find them</li>
+</ul>
+<p>Replies typically arrive within a few business days.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Why does Sidenote ask for an API key?</h3>
+<p>Sidenote is "bring your own key" (BYOK). AI features (meeting summaries, action items, project context updates) run through your own account with the AI provider you choose. Sidenote never charges for AI usage and never sits between you and your provider. If you do not configure a key, recording and transcription still work; only the post-meeting AI steps are gated.</p>
+
+<h3>What does it cost to use Sidenote?</h3>
+<p>Sidenote itself is a one-time purchase from the Mac App Store. AI usage is whatever your chosen provider charges, billed by them directly to your account. If you run Ollama locally instead, AI is free.</p>
+
+<h3>How do I record a Zoom, Teams, or Google Meet call?</h3>
+<p>On macOS 14.4 and later, Sidenote uses Core Audio process taps to capture system audio (the other participants' voices) alongside your microphone. Start your meeting in Zoom, Teams, Meet, or any browser, then start a recording in Sidenote. The first time you record, macOS will prompt you to grant System Audio Recording permission.</p>
+
+<h3>Why doesn't Sidenote need Screen Recording permission?</h3>
+<p>Sidenote captures only audio, never your screen. The Core Audio process tap API used for system audio is gated by a separate permission ("System Audio Recording") that's distinct from Screen Recording. If macOS prompts you for Screen Recording, that prompt is not from Sidenote.</p>
+
+<h3>Where are my notes stored?</h3>
+<p>By default, Sidenote stores your notes in the Sidenote iCloud Drive container, visible in Finder under iCloud Drive → Sidenote. You can choose a different folder under Settings → Notes. The local SQLite database is rebuilt from your notes folder at every launch, so your filesystem is the source of truth.</p>
+
+<h3>How does sync work between Macs?</h3>
+<p>Sync is file-based through Apple's iCloud Drive. Sign in to the same Apple ID on both Macs, install Sidenote on both, and your notes folder will sync automatically. The local database is not synced; each Mac rebuilds its own from the iCloud Drive contents on launch. Audio recordings stay local to the Mac that captured them.</p>
+
+<h3>I don't want to use a cloud AI provider. Can I run AI locally?</h3>
+<p>Yes. Install <a href="https://ollama.com">Ollama</a>, pull a tool-capable model (Llama 3.1 or later, Qwen 2.5 or later, etc.) with <code>ollama pull llama3.2</code>, then select Ollama as your provider in Settings → AI. Everything stays on your Mac.</p>
+
+<h3>Can I use Sidenote with Claude Code, Codex, or another AI agent?</h3>
+<p>Yes. Each project has an <code>AGENT.md</code> file with structured context, and Sidenote bundles a <code>sidenote-mcp</code> helper that exposes your notes over MCP (JSON-RPC over stdio). Point your agent at the helper to query, search, and reference meeting content directly. Your agent uses your existing subscription; Sidenote does not bill for or proxy this traffic.</p>
+
+<h3>How do I delete my data?</h3>
+<p>Delete a project from within Sidenote to remove its folder and database rows. Audio recordings are deleted automatically 14 days after capture. Uninstalling Sidenote removes the local database; your notes folder remains where you saved it (delete it manually in Finder if you also want to remove your notes).</p>
+
+<h3>I'm seeing a recording-consent prompt. What is that?</h3>
+<p>The first time you start a recording on each Mac, Sidenote shows a one-time reminder that you are responsible for obtaining consent from everyone in the meeting before recording. Recording laws vary by jurisdiction. Sidenote does not enforce these rules; that is your responsibility as the user.</p>
+
+<h2>Privacy</h2>
+<p>For details on what data Sidenote handles and where it goes, see the <a href="privacy.html">Privacy Policy</a>.</p>
+
+</body>
+</html>
